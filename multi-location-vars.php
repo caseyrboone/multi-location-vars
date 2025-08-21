@@ -14,7 +14,7 @@ Text Domain: multi-location-vars
 //Adding check for dependent Multi Location Auto Menu plugin and deactivates it.
 
 if ( ! function_exists( 'is_plugin_active' ) ) {
-	require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
+	require_once( ABSPATH . '/wp-admin/includes/multi-location-vars.php' );
 }
 
 register_deactivation_hook(__FILE__,'my_plugin_A_deactivate'); 
@@ -135,7 +135,6 @@ function multi_location_vars_shortcode($atts)
     Fetch the post_id / location_id from the URL
 */
 
-/*this is a test to update the multi_location-vars plugin in Underboot, what happens in BRAND? Sandy */
 
 function get_post_id_by_meta_key_and_value($key = 'location', $value) {
     
@@ -149,8 +148,8 @@ function get_post_id_by_meta_key_and_value($key = 'location', $value) {
                 'order'             => 'ASC',
                 'meta_query'        => array(
                                             array(
-                                                'key'   => $wpdb->escape($key),
-                                                'value' => $wpdb->escape($value),
+                                                'key'   => $key,
+                                                'value' => $value,
                                             )
                                         )
                 );        
@@ -182,12 +181,12 @@ function multi_location_vars_column_headers($columns){
     $columns = array (
     'cb' => '<input type="checkbox" />',
     'title' => __('Location'),
-);
-    return $columns;
+    );
+        return $columns;
 }
 
 //3.2
-function multi_location_vars_column_data ($column, $post_id){
+function multi_location_vars_column_data ($columns, $post_id){
      $output = '';
 // 	//$output_phone = '';
      switch($columns){

@@ -2,8 +2,6 @@
 
 A lightweight WordPress plugin that lets you manage **location‑specific variables** (address, phone, social links, hours, etc.) as a custom post type and output them anywhere via a single shortcode. The active location can be resolved from either a **cookie** or the **first URL path segment**, with a configurable default fallback.
 
-> ✅ This repository contains only descriptive, **vendor‑neutral** documentation and code. Any legacy brand references were removed for clarity and reusability.
-
 ---
 
 ## Key Features
@@ -155,12 +153,6 @@ multi-location-vars/
 ## Changelog
 
 - **1.2** – Stable internal release; settings page; shortcode; cookie/URL resolver; default fallback.
-
----
-
-## License
-
-Choose a license appropriate for your use. If you’re unsure, MIT is a good default for open source. Create a `LICENSE` file (e.g., MIT, Apache‑2.0, GPL‑2.0+).
 
 ---
 
