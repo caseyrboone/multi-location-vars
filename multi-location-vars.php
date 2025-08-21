@@ -393,6 +393,25 @@ register_activation_hook( __FILE__, 'create_post_default' );
 
 
 /* !10. MISCELLANEOUS */
+// Register REST API endpoint to fetch locations
+if ( ! function_exists( 'register_rest_route' ) ) {
+    // If the REST API is not available, we exit early.
+    add_action( 'admin_notices', function() {
+        echo '<div class="error"><p>' . esc_html__( 'Multi Location Vars plugin requires the REST API to be available.', 'multi-location-vars' ) . '</p></div>';
+    });
+    return;
+}
 
+add_action('rest_api_init', function() {
+    register_rest_route('multi-location/v1', '/locations/', [
+        'methods'  => 'GET',
+        'callback' => 'get_locations_api',
+    ]);
+});
+
+function get_locations_api($request) {
+    $locations = get_posts(['post_type' => 'multi_location_vars']);
+    return new WP_REST_Response($locations, 200);
+}
 
 ?>
